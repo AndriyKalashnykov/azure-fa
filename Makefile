@@ -60,6 +60,8 @@ version:
 
 #create-resources: @ Create AZ resources
 create-resources:
+	az account list-locations -o table
+	az vm list-usage --location $(AZ_LOCATION) --output table
 	az login
 	az account set --subscription $(AZ_SUBSCRIPTION)
 	az group create --name $(AZ_FA_RES_GROUP_NAME) --location $(AZ_LOCATION)
@@ -75,6 +77,7 @@ publish-function:
 
 #delete-resources: @ Delete AZ resources
 delete-resources:
+	az functionapp delete --name $(AZ_FA_NAME) --resource-group $(AZ_FA_RES_GROUP_NAME)
 	az storage account delete --name $(AZ_FA_STORAGE_ACCT_NAME)
 	az group delete --name $(AZ_FA_RES_GROUP_NAME)
 
