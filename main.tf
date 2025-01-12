@@ -24,11 +24,12 @@ provider "azurerm" {
 }
 
 locals {
- location = "eastus"
+ location = "westeurope"
  rg_name = "azurefa1-rg"
- storage_account_name ="azurefa1storageacc"
+ storage_account_name ="akazurefa1storage"
  fa_name = "ak-azurefa1"
  fa_service_plan_name = "ak-azurefa1-service-plan"
+ fa_application_insights_name = "ak-azurefa1-app-insights"
  
  tags = {
    Name = "Azure Functions"
@@ -70,7 +71,7 @@ resource "azurerm_service_plan" "fa_serviceplan" {
 }
 
 resource "azurerm_application_insights" "func_insight" {
-  name                = "fa-application-insights"
+  name                = local.fa_application_insights_name
   location            = azurerm_resource_group.fa_rg.location
   resource_group_name = azurerm_resource_group.fa_rg.name
   application_type    = "Node.JS"
