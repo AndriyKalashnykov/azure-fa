@@ -87,12 +87,12 @@ resource "azurerm_linux_function_app" "fa" {
   depends_on = [ azurerm_service_plan.fa_serviceplan, azurerm_storage_account.fa_storage_account ]
   https_only                    = true
   public_network_access_enabled = true
-  app_settings = {
-    FUNCTIONS_EXTENSION_VERSION = "~4",
-    "WEBSITE_RUN_FROM_PACKAGE" = "",
-    "FUNCTIONS_WORKER_RUNTIME" = "node",
-    "APPINSIGHTS_INSTRUMENTATIONKEY" = azurerm_application_insights.func_insight.instrumentation_key
-  }
+  # app_settings = {
+  #   FUNCTIONS_EXTENSION_VERSION = "~4",
+  #   "WEBSITE_RUN_FROM_PACKAGE" = "",
+  #   "FUNCTIONS_WORKER_RUNTIME" = "node",
+  #   "APPINSIGHTS_INSTRUMENTATIONKEY" = azurerm_application_insights.func_insight.instrumentation_key
+  # }
   
   site_config {
     application_insights_key               = azurerm_application_insights.func_insight.instrumentation_key
@@ -102,10 +102,5 @@ resource "azurerm_linux_function_app" "fa" {
     }
   }
 
-  lifecycle {
-    ignore_changes = [
-      app_settings["WEBSITE_RUN_FROM_PACKAGE"],
-    ]
-  }
   tags = local.tags
 }
