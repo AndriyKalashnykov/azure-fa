@@ -91,3 +91,7 @@ tf-create-remote-storage-account:
 
 	# Create blob container
 	az storage container create --name $(TF_CONTAINER_NAME) --account-name $(TF_STORAGE_ACCOUNT_NAME)
+
+#aztf-export: @ Export Azure Resource Group
+aztf-export:
+	@cd terra && aztfexport resource-group --non-interactive --hcl-only akaf12
