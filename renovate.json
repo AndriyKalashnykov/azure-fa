@@ -2,5 +2,57 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:recommended"
+  ],
+  "baseBranches": ["main"],
+  "labels": ["dependencies"],
+  "lockFileMaintenance": {
+    "enabled": true,
+    "automerge": true
+  },
+  "automergeType": "branch",
+  "vulnerabilityAlerts": {
+    "labels": ["security"],
+    "schedule": "at any time"
+  },
+  "rangeStrategy": "bump",
+  "packageRules": [
+    {
+      "packageNames": ["node"],
+      "major": {
+        "enabled": true
+      },
+      "separateMultipleMajor": true,
+      "allowedVersions": "^18 || ^20"
+    },
+
+    {
+      "depTypeList": ["dependencies"],
+      "groupName": "Dependencies"
+    },
+    {
+      "depTypeList": ["devDependencies"],
+      "groupName": "Dev Dependencies"
+    },
+    {
+      "groupName": "app",
+      "groupSlug": "function-app dependancies",
+      "matchFiles": ["package.json"],
+      "matchPackagePatterns": ["*"],
+      "labels": ["root", "Renovate"]
+    },
+    {
+      "groupName": "infrastrucutre",
+      "groupSlug": "Terraform module dependancies",
+      "matchFiles": ["infra/"],
+      "matchPackagePatterns": ["*"],
+      "labels": ["module", "Renovate"]
+    },
+    {
+      "groupName": "Configuration",
+      "groupSlug": "config dependancies",
+      "matchFileNames": ["config/"],
+      "matchPackagePatterns": ["*"],
+      "labels": ["terraform", "Renovate"]
+    }
   ]
 }
