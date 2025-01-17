@@ -14,3 +14,6 @@
 * [Sizes for virtual machines in Azure](https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/overview?tabs=breakdownseries%2Cgeneralsizelist%2Ccomputesizelist%2Cmemorysizelist%2Cstoragesizelist%2Cgpusizelist%2Cfpgasizelist%2Chpcsizelist)
 * [Configure monitoring for Azure Functions](https://learn.microsoft.com/en-us/azure/azure-functions/configure-monitoring?tabs=v2)
 * [Azure Functions Node.js developer guide](https://learn.microsoft.com/en-us/azure/azure-functions/functions-reference-node?tabs=javascript%2Clinux%2Cazure-cli&pivots=nodejs-model-v4)
+* [Streamlining Dependency Updates with Renovate in Azure DevOps Pipelines](https://medium.com/@yasser.abbasi/streamlining-dependency-updates-with-renovate-in-azure-devops-pipelines-c1a4ddb95e45)
+* [Using Renovate Bot in Azure DevOps](https://blog.ostebaronen.dk/2024/01/renovate.html)
+* [Configure Renovate on Azure DevOps mono-repo](https://devopsengage.com/configure-renovate-on-azure-devops-mono-repo)
