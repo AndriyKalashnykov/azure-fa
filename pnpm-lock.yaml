@@ -9,16 +9,16 @@ importers:
   .:
     dependencies:
       '@azure/functions':
-        specifier: ^4.6.0
-        version: 4.6.0
+        specifier: ^4.6.1
+        version: 4.6.1
       durable-functions:
         specifier: ^3.1.0
         version: 3.1.0
 
 packages:
 
-  '@azure/functions@4.6.0':
-    resolution: {integrity: sha512-vGq9jXlgrJ3KaI8bepgfpk26zVY8vFZsQukF85qjjKTAR90eFOOBNaa+mc/0ViDY2lcdrU2fL/o1pQyZUtTDsw==}
+  '@azure/functions@4.6.1':
+    resolution: {integrity: sha512-Py2Az29yk+A21vHES/rL6iU3ptKB+vVz3sGTjm0jSPFjG4kPbhFLi5vFI7YkCPMGeoD4WMIjHqTAeXvnFrBUBA==}
     engines: {node: '>=18.0'}
 
   '@fastify/busboy@2.1.1':
@@ -106,7 +106,7 @@ packages:
 
 snapshots:
 
-  '@azure/functions@4.6.0':
+  '@azure/functions@4.6.1':
     dependencies:
       cookie: 0.7.2
       long: 4.0.0
@@ -138,7 +138,7 @@ snapshots:
 
   durable-functions@3.1.0:
     dependencies:
-      '@azure/functions': 4.6.0
+      '@azure/functions': 4.6.1
       axios: 1.7.9(debug@2.6.9)
       debug: 2.6.9
       lodash: 4.17.21
