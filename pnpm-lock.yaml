@@ -28,8 +28,8 @@ packages:
   asynckit@0.4.0:
     resolution: {integrity: sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==}
 
-  axios@1.8.2:
-    resolution: {integrity: sha512-ls4GYBm5aig9vWx8AWDSGLpnpDQRtWAfrjU+EuytuODrFBkqesN2RkOQCBzrA1RQNHw1SmRMSDDDSwzNAYQ6Rg==}
+  axios@1.8.3:
+    resolution: {integrity: sha512-iP4DebzoNlP/YN2dpwCgb8zoCmhtkajzS48JvwmkSkXvPI3DHc7m+XYL5tGnSlJtR6nImXZmdCuN5aP8dh1d8A==}
 
   call-bind-apply-helpers@1.0.2:
     resolution: {integrity: sha512-Sp1ablJ0ivDkSzjcaJdxEunN5/XvksFJ2sMBFfq6x0ryhQV/2b/KwFe21cMpmHtPOSij8K99/wSfoEuTObmuMQ==}
@@ -171,7 +171,7 @@ snapshots:
 
   asynckit@0.4.0: {}
 
-  axios@1.8.2(debug@2.6.9):
+  axios@1.8.3(debug@2.6.9):
     dependencies:
       follow-redirects: 1.15.9(debug@2.6.9)
       form-data: 4.0.2
@@ -205,7 +205,7 @@ snapshots:
   durable-functions@3.1.0:
     dependencies:
       '@azure/functions': 4.7.0
-      axios: 1.8.2(debug@2.6.9)
+      axios: 1.8.3(debug@2.6.9)
       debug: 2.6.9
       lodash: 4.17.21
       moment: 2.30.1
