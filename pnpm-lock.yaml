@@ -10,15 +10,15 @@ importers:
     dependencies:
       '@azure/functions':
         specifier: ^4.7.0
-        version: 4.7.0
+        version: 4.7.2
       durable-functions:
         specifier: ^3.1.0
         version: 3.1.0
 
 packages:
 
-  '@azure/functions@4.7.0':
-    resolution: {integrity: sha512-y1caGX6LYrA7msAckQVb/quFOhWHSPiGzWfIML17t0ee2ydpinJTBF+Sti+URfLAH63dtmXJR4meraZkhhK9tw==}
+  '@azure/functions@4.7.2':
+    resolution: {integrity: sha512-5ps8yz4gn6oZSzeQbpUreWHFYl/YS03F1Sk/pz7YJphfctRcHuLF5tcrdm9AyRiYzja4Bkd63bju+g/E27opPQ==}
     engines: {node: '>=18.0'}
 
   '@fastify/busboy@2.1.1':
@@ -161,7 +161,7 @@ packages:
 
 snapshots:
 
-  '@azure/functions@4.7.0':
+  '@azure/functions@4.7.2':
     dependencies:
       cookie: 0.7.2
       long: 4.0.0
@@ -204,7 +204,7 @@ snapshots:
 
   durable-functions@3.1.0:
     dependencies:
-      '@azure/functions': 4.7.0
+      '@azure/functions': 4.7.2
       axios: 1.9.0(debug@2.6.9)
       debug: 2.6.9
       lodash: 4.17.21
