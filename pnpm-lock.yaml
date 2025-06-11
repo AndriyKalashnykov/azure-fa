@@ -9,21 +9,17 @@ importers:
   .:
     dependencies:
       '@azure/functions':
-        specifier: ^4.7.2
-        version: 4.7.2
+        specifier: ^4.7.3
+        version: 4.7.3
       durable-functions:
         specifier: ^3.1.0
         version: 3.1.0
 
 packages:
 
-  '@azure/functions@4.7.2':
-    resolution: {integrity: sha512-5ps8yz4gn6oZSzeQbpUreWHFYl/YS03F1Sk/pz7YJphfctRcHuLF5tcrdm9AyRiYzja4Bkd63bju+g/E27opPQ==}
+  '@azure/functions@4.7.3':
+    resolution: {integrity: sha512-NwizjL8qcujVq+Yl3iL6TvtEC9v4CWZgipd0UPa5PvM2a5Uiqd1Uk8wGCYPhfskGy+1YpBLyQje1SRdlLzB6Jw==}
     engines: {node: '>=18.0'}
-
-  '@fastify/busboy@2.1.1':
-    resolution: {integrity: sha512-vBZP4NlzfOlerQTnba4aqZoMhE/a9HY7HRqoOPaETQcSQuWEIyZMHGfVu6w9wGtGK5fED5qRs2DteVCjOH60sA==}
-    engines: {node: '>=14'}
 
   asynckit@0.4.0:
     resolution: {integrity: sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==}
@@ -146,9 +142,9 @@ packages:
   proxy-from-env@1.1.0:
     resolution: {integrity: sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==}
 
-  undici@5.29.0:
-    resolution: {integrity: sha512-raqeBD6NQK4SkWhQzeYKd1KmIG6dllBOTt55Rmkt4HtI9mwdWtJljnrXjAFUBLTSN67HWrOIZ3EPF4kjUw80Bg==}
-    engines: {node: '>=14.0'}
+  undici@7.10.0:
+    resolution: {integrity: sha512-u5otvFBOBZvmdjWLVW+5DAc9Nkq8f24g0O9oY7qw2JVIF1VocIFoyz9JFkuVOS2j41AufeO0xnlweJ2RLT8nGw==}
+    engines: {node: '>=20.18.1'}
 
   uuid@3.3.3:
     resolution: {integrity: sha512-pW0No1RGHgzlpHJO1nsVrHKpOEIxkGg1xB+v0ZmdNH5OAeAwzAVrCnI2/6Mtx+Uys6iaylxa+D3g4j63IKKjSQ==}
@@ -161,13 +157,11 @@ packages:
 
 snapshots:
 
-  '@azure/functions@4.7.2':
+  '@azure/functions@4.7.3':
     dependencies:
       cookie: 0.7.2
       long: 4.0.0
-      undici: 5.29.0
-
-  '@fastify/busboy@2.1.1': {}
+      undici: 7.10.0
 
   asynckit@0.4.0: {}
 
@@ -204,7 +198,7 @@ snapshots:
 
   durable-functions@3.1.0:
     dependencies:
-      '@azure/functions': 4.7.2
+      '@azure/functions': 4.7.3
       axios: 1.9.0(debug@2.6.9)
       debug: 2.6.9
       lodash: 4.17.21
@@ -291,9 +285,7 @@ snapshots:
 
   proxy-from-env@1.1.0: {}
 
-  undici@5.29.0:
-    dependencies:
-      '@fastify/busboy': 2.1.1
+  undici@7.10.0: {}
 
   uuid@3.3.3: {}
 
