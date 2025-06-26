@@ -6,10 +6,10 @@ terraform {
     }
   }
   backend "azurerm" {
-      resource_group_name  = "tfstate-rg"
-      storage_account_name = "tfstate29056"
-      container_name       = "tfstate"
-      key                  = "terraform.tfstate"
+    resource_group_name  = "tfstate-rg"
+    storage_account_name = "tfstate29056"
+    container_name       = "tfstate"
+    key                  = "terraform.tfstate"
   }
 
 }
@@ -23,24 +23,6 @@ provider "azurerm" {
   }
 }
 
-locals {
- location = "westeurope"
- rg_name = "azurefa1-rg"
- storage_account_name ="akazurefa1storage"
- fa_name_linux = "akazurefa1linux"
- fa_name_windows = "akazurefa1windows"
- fa_service_plan_linux_name = "ak-azurefa1-service-plan-linux"
- fa_service_plan_windows_name = "ak-azurefa1-service-plan-windows"
- fa_log_analytics_workspace_name = "ak-azurefa1-log-analytics-workspace"
- fa_application_insights_name = "ak-azurefa1-app-insights"
- 
- tags = {
-   Name = "Azure Functions"
-   Env  = "Dev"
- }
-
-}
-
 resource "azurerm_resource_group" "fa_rg" {
   name     = local.rg_name
   location = local.location
@@ -50,46 +32,46 @@ resource "azurerm_resource_group" "fa_rg" {
 }
 
 resource "azurerm_storage_account" "fa_storage_account" {
-  name = local.storage_account_name
-  location = azurerm_resource_group.fa_rg.location
-  resource_group_name = azurerm_resource_group.fa_rg.name
-  account_kind = "Storage"
-  account_tier = "Standard"
+  name                     = local.storage_account_name
+  location                 = azurerm_resource_group.fa_rg.location
+  resource_group_name      = azurerm_resource_group.fa_rg.name
+  account_kind             = "Storage"
+  account_tier             = "Standard"
   account_replication_type = "LRS"
-  min_tls_version = "TLS1_2"
-  tags = local.tags
+  min_tls_version          = "TLS1_2"
+  tags                     = local.tags
   timeouts {
     create = "3m"
     update = "3m"
     delete = "3m"
   }
-  
+
   depends_on = [
     azurerm_resource_group.fa_rg,
   ]
 }
 
 resource "azurerm_service_plan" "fa_serviceplan_linux" {
-  name = local.fa_service_plan_linux_name
+  name                = local.fa_service_plan_linux_name
   resource_group_name = azurerm_resource_group.fa_rg.name
-  location = azurerm_resource_group.fa_rg.location
-  
-  os_type = "Linux"
+  location            = azurerm_resource_group.fa_rg.location
+
+  os_type  = "Linux"
   sku_name = "B1"
-  
+
   depends_on = [
     azurerm_resource_group.fa_rg,
   ]
 }
 
 resource "azurerm_service_plan" "fa_serviceplan_windows" {
-  name = local.fa_service_plan_windows_name
+  name                = local.fa_service_plan_windows_name
   resource_group_name = azurerm_resource_group.fa_rg.name
-  location = azurerm_resource_group.fa_rg.location
-  
-  os_type = "Windows"
+  location            = azurerm_resource_group.fa_rg.location
+
+  os_type  = "Windows"
   sku_name = "Y1"
-  
+
   depends_on = [
     azurerm_resource_group.fa_rg,
   ]
@@ -98,7 +80,7 @@ resource "azurerm_service_plan" "fa_serviceplan_windows" {
 resource "azurerm_log_analytics_workspace" "fa_log_analytics_workspace" {
   location            = azurerm_resource_group.fa_rg.location
   name                = local.fa_log_analytics_workspace_name
-  resource_group_name =  azurerm_resource_group.fa_rg.name
+  resource_group_name = azurerm_resource_group.fa_rg.name
   depends_on = [
     azurerm_resource_group.fa_rg,
   ]
@@ -108,33 +90,33 @@ resource "azurerm_application_insights" "func_insight" {
   name                = local.fa_application_insights_name
   location            = azurerm_resource_group.fa_rg.location
   resource_group_name = azurerm_resource_group.fa_rg.name
-  workspace_id = azurerm_log_analytics_workspace.fa_log_analytics_workspace.id
+  workspace_id        = azurerm_log_analytics_workspace.fa_log_analytics_workspace.id
   sampling_percentage = 0
   application_type    = "Node.JS"
-  
+
   depends_on = [
     azurerm_resource_group.fa_rg,
   ]
 }
 
 resource "azurerm_linux_function_app" "fa_linux" {
-  name = local.fa_name_linux
-  resource_group_name = azurerm_resource_group.fa_rg.name
-  location = azurerm_resource_group.fa_rg.location
-  storage_account_name = azurerm_storage_account.fa_storage_account.name
+  name                       = local.fa_name_linux
+  resource_group_name        = azurerm_resource_group.fa_rg.name
+  location                   = azurerm_resource_group.fa_rg.location
+  storage_account_name       = azurerm_storage_account.fa_storage_account.name
   storage_account_access_key = azurerm_storage_account.fa_storage_account.primary_access_key
-  service_plan_id = azurerm_service_plan.fa_serviceplan_linux.id
-  
+  service_plan_id            = azurerm_service_plan.fa_serviceplan_linux.id
+
   # https_only                    = true
   # public_network_access_enabled = true
   functions_extension_version = "~4"
   app_settings = {
-    FUNCTIONS_WORKER_RUNTIME = "node",
-    WEBSITE_NODE_DEFAULT_VERSION = "~20"
-    APPINSIGHTS_INSTRUMENTATIONKEY = azurerm_application_insights.func_insight.instrumentation_key
+    FUNCTIONS_WORKER_RUNTIME              = "node",
+    WEBSITE_NODE_DEFAULT_VERSION          = "~20"
+    APPINSIGHTS_INSTRUMENTATIONKEY        = azurerm_application_insights.func_insight.instrumentation_key
     APPLICATIONINSIGHTS_CONNECTION_STRING = azurerm_application_insights.func_insight.connection_string
   }
-  
+
   site_config {
     # application_insights_key               = azurerm_application_insights.func_insight.instrumentation_key
     # application_insights_connection_string = azurerm_application_insights.func_insight.connection_string
@@ -149,22 +131,22 @@ resource "azurerm_linux_function_app" "fa_linux" {
     azurerm_resource_group.fa_rg,
     azurerm_storage_account.fa_storage_account,
     azurerm_service_plan.fa_serviceplan_linux,
-    azurerm_application_insights.func_insight,   
+    azurerm_application_insights.func_insight,
   ]
 }
 
 resource "azurerm_windows_function_app" "fa_windows" {
 
-  builtin_logging_enabled    = false
-  client_certificate_mode    = "Required"
-  location                   = azurerm_resource_group.fa_rg.location
-  name                       = local.fa_name_windows
-  resource_group_name        = azurerm_resource_group.fa_rg.name
-  service_plan_id = azurerm_service_plan.fa_serviceplan_windows.id
-  storage_account_access_key = azurerm_storage_account.fa_storage_account.primary_access_key
-  storage_account_name = azurerm_storage_account.fa_storage_account.name
+  builtin_logging_enabled     = false
+  client_certificate_mode     = "Required"
+  location                    = azurerm_resource_group.fa_rg.location
+  name                        = local.fa_name_windows
+  resource_group_name         = azurerm_resource_group.fa_rg.name
+  service_plan_id             = azurerm_service_plan.fa_serviceplan_windows.id
+  storage_account_access_key  = azurerm_storage_account.fa_storage_account.primary_access_key
+  storage_account_name        = azurerm_storage_account.fa_storage_account.name
   functions_extension_version = "~4"
-  
+
   site_config {
     application_insights_connection_string = azurerm_application_insights.func_insight.connection_string
     ftps_state                             = "FtpsOnly"
@@ -174,7 +156,7 @@ resource "azurerm_windows_function_app" "fa_windows" {
 
   app_settings = {
     "WEBSITE_NODE_DEFAULT_VERSION"   = "~20",
-    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "FUNCTIONS_WORKER_RUNTIME" : "node",
     "APPINSIGHTS_INSTRUMENTATIONKEY" = azurerm_application_insights.func_insight.connection_string
   }
 
@@ -182,14 +164,10 @@ resource "azurerm_windows_function_app" "fa_windows" {
     azurerm_resource_group.fa_rg,
     azurerm_storage_account.fa_storage_account,
     azurerm_service_plan.fa_serviceplan_windows,
-    azurerm_application_insights.func_insight,   
+    azurerm_application_insights.func_insight,
   ]
 }
 
-locals {
-  publish_fa_windows_command = "func azure functionapp publish ${azurerm_windows_function_app.fa_windows.name}"
-  publish_fa_linux_command   = "func azure functionapp publish ${azurerm_linux_function_app.fa_linux.name}"
-}
 resource "null_resource" "function_app_publish_windows" {
   depends_on = [local.publish_fa_windows_command, azurerm_windows_function_app.fa_windows]
   triggers = {
@@ -211,7 +189,7 @@ resource "null_resource" "function_app_publish_linux" {
 }
 
 # resource "azurerm_app_service_custom_hostname_binding" "fa_custom_hostname_binding" {
-  
+
 #   app_service_name    = azurerm_windows_function_app.fa_windows.name
 #   hostname            = format("%s%s",local.fa_name_windows, ".azurewebsites.net")
 #   resource_group_name = azurerm_resource_group.fa_rg.name
