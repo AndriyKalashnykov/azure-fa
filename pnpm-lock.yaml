@@ -12,8 +12,8 @@ importers:
         specifier: ^4.7.3
         version: 4.7.3
       durable-functions:
-        specifier: ^3.1.0
-        version: 3.1.0
+        specifier: ^3.2.0
+        version: 3.2.0
 
 packages:
 
@@ -22,11 +22,15 @@ packages:
     engines: {node: '>=18.0'}
     deprecated: Incompatible with Node 18
 
+  '@opentelemetry/api@1.9.0':
+    resolution: {integrity: sha512-3giAOQvZiH5F9bMlMiv8+GSPMeqg0dbaeo58/0SlA9sxSqZhnUtxzX9/2FzyhS9sWQf5S0GJE0AKBrFqjpeYcg==}
+    engines: {node: '>=8.0.0'}
+
   asynckit@0.4.0:
     resolution: {integrity: sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==}
 
-  axios@1.10.0:
-    resolution: {integrity: sha512-/1xYAC4MP/HEG+3duIhFr4ZQXR4sQXOIe+o6sdqzeykGLx6Upp/1p8MHqhINOvGeP7xyNHe7tsiJByc4SSVUxw==}
+  axios@1.11.0:
+    resolution: {integrity: sha512-1Lx3WLFQWm3ooKDYZD1eXmoGO9fxYQjrycfHFC8P0sCfQVXyROp0p9PFWBehewBOdCwHc+f/b8I0fMto5eSfwA==}
 
   call-bind-apply-helpers@1.0.2:
     resolution: {integrity: sha512-Sp1ablJ0ivDkSzjcaJdxEunN5/XvksFJ2sMBFfq6x0ryhQV/2b/KwFe21cMpmHtPOSij8K99/wSfoEuTObmuMQ==}
@@ -56,8 +60,8 @@ packages:
     resolution: {integrity: sha512-KIN/nDJBQRcXw0MLVhZE9iQHmG68qAVIBg9CqmUYjmQIhgij9U5MFvrqkUL5FbtyyzZuOeOt0zdeRe4UY7ct+A==}
     engines: {node: '>= 0.4'}
 
-  durable-functions@3.1.0:
-    resolution: {integrity: sha512-baSkW45/VrVvl1e27qvxEZX2z5vApiINaGUTIxx0c4H5E2Lr22QnogZrebqIhyfspZ466XKhp245nyS0HSkAYg==}
+  durable-functions@3.2.0:
+    resolution: {integrity: sha512-fUiJwbu8lGjZhztuoIWrclrTjoNF45kEI0PxHeQrd4hT0CFhlx05JBN80YXgaD0czJgdnZPYgsz/KyJYpssa3g==}
     engines: {node: '>=18.0'}
 
   es-define-property@1.0.1:
@@ -85,8 +89,8 @@ packages:
       debug:
         optional: true
 
-  form-data@4.0.3:
-    resolution: {integrity: sha512-qsITQPfmvMOSAdeyZ+12I1c+CKSstAFAwu+97zrnWAbIr5u8wfsExUzCesVLC8NgHuRUqNN4Zy6UPWUTRGslcA==}
+  form-data@4.0.4:
+    resolution: {integrity: sha512-KrGhL9Q4zjj0kiUt5OO4Mr/A/jlI2jDYs5eHBpYHPcBEVSiipAvn2Ko2HnPe20rmcuuvMHNdZFp+4IlGTMF0Ow==}
     engines: {node: '>= 6'}
 
   function-bind@1.1.2:
@@ -147,9 +151,8 @@ packages:
     resolution: {integrity: sha512-heTSIac3iLhsmZhUCjyS3JQEkZELateufzZuBaVM5RHXdSBMb1LPMQf5x+FH7qjsZYDP0ttAc3nnVpUB+wYbOg==}
     engines: {node: '>=20.18.1'}
 
-  uuid@3.3.3:
-    resolution: {integrity: sha512-pW0No1RGHgzlpHJO1nsVrHKpOEIxkGg1xB+v0ZmdNH5OAeAwzAVrCnI2/6Mtx+Uys6iaylxa+D3g4j63IKKjSQ==}
-    deprecated: Please upgrade  to version 7 or higher.  Older versions may use Math.random() in certain circumstances, which is known to be problematic.  See https://v8.dev/blog/math-random for details.
+  uuid@9.0.1:
+    resolution: {integrity: sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA==}
     hasBin: true
 
   validator@13.7.0:
@@ -164,12 +167,14 @@ snapshots:
       long: 4.0.0
       undici: 7.11.0
 
+  '@opentelemetry/api@1.9.0': {}
+
   asynckit@0.4.0: {}
 
-  axios@1.10.0(debug@2.6.9):
+  axios@1.11.0(debug@2.6.9):
     dependencies:
       follow-redirects: 1.15.9(debug@2.6.9)
-      form-data: 4.0.3
+      form-data: 4.0.4
       proxy-from-env: 1.1.0
     transitivePeerDependencies:
       - debug
@@ -197,14 +202,15 @@ snapshots:
       es-errors: 1.3.0
       gopd: 1.2.0
 
-  durable-functions@3.1.0:
+  durable-functions@3.2.0:
     dependencies:
       '@azure/functions': 4.7.3
-      axios: 1.10.0(debug@2.6.9)
+      '@opentelemetry/api': 1.9.0
+      axios: 1.11.0(debug@2.6.9)
       debug: 2.6.9
       lodash: 4.17.21
       moment: 2.30.1
-      uuid: 3.3.3
+      uuid: 9.0.1
       validator: 13.7.0
     transitivePeerDependencies:
       - supports-color
@@ -228,7 +234,7 @@ snapshots:
     optionalDependencies:
       debug: 2.6.9
 
-  form-data@4.0.3:
+  form-data@4.0.4:
     dependencies:
       asynckit: 0.4.0
       combined-stream: 1.0.8
@@ -288,6 +294,6 @@ snapshots:
 
   undici@7.11.0: {}
 
-  uuid@3.3.3: {}
+  uuid@9.0.1: {}
 
   validator@13.7.0: {}
