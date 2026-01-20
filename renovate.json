@@ -5,14 +5,17 @@
   ],
   "baseBranches": ["main"],
   "labels": ["dependencies"],
+  "automerge": true,
+  "automergeType": "branch",
+  "platformAutomerge": true,
+  "ignoreTests": false,
   "lockFileMaintenance": {
     "enabled": true,
     "automerge": true
   },
-  "automergeType": "branch",
   "vulnerabilityAlerts": {
     "labels": ["security"],
-    "schedule": "at any time"
+    "automerge": true
   },
   "rangeStrategy": "bump",
   "packageRules": [
@@ -22,37 +25,42 @@
         "enabled": true
       },
       "separateMultipleMajor": true,
-      "allowedVersions": "^18 || ^20"
+      "allowedVersions": "^18 || ^20",
+      "automerge": true
     },
-
     {
       "depTypeList": ["dependencies"],
-      "groupName": "Dependencies"
+      "groupName": "Dependencies",
+      "automerge": true
     },
     {
       "depTypeList": ["devDependencies"],
-      "groupName": "Dev Dependencies"
+      "groupName": "Dev Dependencies",
+      "automerge": true
     },
     {
       "groupName": "app",
-      "groupSlug": "function-app dependancies",
+      "groupSlug": "function-app-dependencies",
       "matchFiles": ["package.json"],
       "matchPackagePatterns": ["*"],
-      "labels": ["root", "Renovate"]
+      "labels": ["root", "Renovate"],
+      "automerge": true
     },
     {
-      "groupName": "infrastrucutre",
-      "groupSlug": "Terraform module dependancies",
-      "matchFiles": ["infra/"],
+      "groupName": "infrastructure",
+      "groupSlug": "terraform-module-dependencies",
+      "matchPaths": ["infra/**"],
       "matchPackagePatterns": ["*"],
-      "labels": ["module", "Renovate"]
+      "labels": ["module", "Renovate"],
+      "automerge": true
     },
     {
       "groupName": "Configuration",
-      "groupSlug": "config dependancies",
-      "matchFileNames": ["config/"],
+      "groupSlug": "config-dependencies",
+      "matchPaths": ["config/**"],
       "matchPackagePatterns": ["*"],
-      "labels": ["terraform", "Renovate"]
+      "labels": ["terraform", "Renovate"],
+      "automerge": true
     }
   ]
 }
