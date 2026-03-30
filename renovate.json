@@ -1,10 +1,15 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:recommended"
+    ":semanticCommitType(chore)",
+    "config:best-practices"
   ],
-  "baseBranches": ["main"],
-  "labels": ["dependencies"],
+  "baseBranches": [
+    "main"
+  ],
+  "labels": [
+    "dependencies"
+  ],
   "automerge": true,
   "automergeType": "branch",
   "platformAutomerge": true,
@@ -14,13 +19,18 @@
     "automerge": true
   },
   "vulnerabilityAlerts": {
-    "labels": ["security"],
-    "automerge": true
+    "labels": [
+      "security"
+    ],
+    "automerge": true,
+    "minimumReleaseAge": "0 days"
   },
   "rangeStrategy": "bump",
   "packageRules": [
     {
-      "packageNames": ["node"],
+      "packageNames": [
+        "node"
+      ],
       "major": {
         "enabled": true
       },
@@ -29,38 +39,106 @@
       "automerge": true
     },
     {
-      "depTypeList": ["dependencies"],
+      "depTypeList": [
+        "dependencies"
+      ],
       "groupName": "Dependencies",
       "automerge": true
     },
     {
-      "depTypeList": ["devDependencies"],
+      "depTypeList": [
+        "devDependencies"
+      ],
       "groupName": "Dev Dependencies",
       "automerge": true
     },
     {
       "groupName": "app",
       "groupSlug": "function-app-dependencies",
-      "matchFiles": ["package.json"],
-      "matchPackagePatterns": ["*"],
-      "labels": ["root", "Renovate"],
-      "automerge": true
+      "matchFiles": [
+        "package.json"
+      ],
+      "labels": [
+        "root",
+        "Renovate"
+      ],
+      "automerge": true,
+      "matchPackageNames": [
+        "/*/"
+      ]
     },
     {
       "groupName": "infrastructure",
       "groupSlug": "terraform-module-dependencies",
-      "matchPaths": ["infra/**"],
-      "matchPackagePatterns": ["*"],
-      "labels": ["module", "Renovate"],
-      "automerge": true
+      "matchPaths": [
+        "infra/**"
+      ],
+      "labels": [
+        "module",
+        "Renovate"
+      ],
+      "automerge": true,
+      "matchPackageNames": [
+        "/*/"
+      ]
     },
     {
       "groupName": "Configuration",
       "groupSlug": "config-dependencies",
-      "matchPaths": ["config/**"],
-      "matchPackagePatterns": ["*"],
-      "labels": ["terraform", "Renovate"],
+      "matchPaths": [
+        "config/**"
+      ],
+      "labels": [
+        "terraform",
+        "Renovate"
+      ],
+      "automerge": true,
+      "matchPackageNames": [
+        "/*/"
+      ]
+    },
+    {
+      "description": "Wait 3 days before automerging major updates",
+      "matchUpdateTypes": [
+        "major"
+      ],
+      "minimumReleaseAge": "3 days"
+    },
+    {
+      "description": "Group GitHub Actions into one PR",
+      "matchManagers": [
+        "github-actions"
+      ],
+      "groupName": "GitHub Actions"
+    },
+    {
+      "description": "Group devDependencies non-major updates",
+      "matchDepTypes": [
+        "devDependencies"
+      ],
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
+      "groupName": "dev-dependencies",
+      "automerge": true
+    },
+    {
+      "description": "Group type definitions",
+      "matchPackageNames": [
+        "/^@types\\\\//"
+      ],
+      "groupName": "type-definitions",
       "automerge": true
     }
-  ]
+  ],
+  "prHourlyLimit": 0,
+  "commitBody": "Signed-off-by: Renovate Bot <bot@renovateapp.com>",
+  "prConcurrentLimit": 50,
+  "commitMessageAction": "update",
+  "automergeStrategy": "squash",
+  "commitMessagePrefix": "chore(all): ",
+  "npm": {
+    "minimumReleaseAge": "3 days"
+  }
 }
