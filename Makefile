@@ -69,7 +69,7 @@ create-resources:
 
 #create-function: @ Create AZ function
 create-function:
-	az functionapp create --resource-group $(AZ_FA_RES_GROUP_NAME) --consumption-plan-location $(AZ_LOCATION) --runtime node --runtime-version 20 --functions-version 4 --name $(AZ_FA_NAME) --storage-account $(AZ_FA_STORAGE_ACCT_NAME)
+	az functionapp create --resource-group $(AZ_FA_RES_GROUP_NAME) --consumption-plan-location $(AZ_LOCATION) --runtime node --runtime-version 22 --functions-version 4 --name $(AZ_FA_NAME) --storage-account $(AZ_FA_STORAGE_ACCT_NAME)
 
 #publish-function: @ Publish function
 publish-function:
