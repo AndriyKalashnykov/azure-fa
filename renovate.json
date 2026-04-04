@@ -4,7 +4,7 @@
     ":semanticCommitType(chore)",
     "config:best-practices"
   ],
-  "baseBranches": [
+  "baseBranchPatterns": [
     "main"
   ],
   "labels": [
@@ -55,7 +55,7 @@
     {
       "groupName": "app",
       "groupSlug": "function-app-dependencies",
-      "matchFiles": [
+      "matchFileNames": [
         "package.json"
       ],
       "labels": [
@@ -67,7 +67,7 @@
     {
       "groupName": "infrastructure",
       "groupSlug": "terraform-module-dependencies",
-      "matchPaths": [
+      "matchFileNames": [
         "infra/**"
       ],
       "labels": [
@@ -79,7 +79,7 @@
     {
       "groupName": "Configuration",
       "groupSlug": "config-dependencies",
-      "matchPaths": [
+      "matchFileNames": [
         "config/**"
       ],
       "labels": [
