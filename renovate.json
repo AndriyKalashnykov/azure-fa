@@ -28,7 +28,7 @@
   "rangeStrategy": "bump",
   "packageRules": [
     {
-      "packageNames": [
+      "matchPackageNames": [
         "node"
       ],
       "major": {
@@ -39,14 +39,14 @@
       "automerge": true
     },
     {
-      "depTypeList": [
+      "matchDepTypes": [
         "dependencies"
       ],
       "groupName": "Dependencies",
       "automerge": true
     },
     {
-      "depTypeList": [
+      "matchDepTypes": [
         "devDependencies"
       ],
       "groupName": "Dev Dependencies",
@@ -62,10 +62,7 @@
         "root",
         "Renovate"
       ],
-      "automerge": true,
-      "matchPackageNames": [
-        "/*/"
-      ]
+      "automerge": true
     },
     {
       "groupName": "infrastructure",
@@ -77,10 +74,7 @@
         "module",
         "Renovate"
       ],
-      "automerge": true,
-      "matchPackageNames": [
-        "/*/"
-      ]
+      "automerge": true
     },
     {
       "groupName": "Configuration",
@@ -92,10 +86,7 @@
         "terraform",
         "Renovate"
       ],
-      "automerge": true,
-      "matchPackageNames": [
-        "/*/"
-      ]
+      "automerge": true
     },
     {
       "description": "Wait 3 days before automerging major updates",

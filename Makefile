@@ -17,7 +17,6 @@ TF_CONTAINER_NAME := tfstate
 
 #help: @ List available tasks
 help:
-	@clear
 	@echo "Usage: make COMMAND"
 	@echo "Commands :"
 	@grep -E '[a-zA-Z\.\-]+:.*?@ .*$$' $(MAKEFILE_LIST)| tr -d '#' | awk 'BEGIN {FS = ":.*?@ "}; {printf "\033[32m%-32s\033[0m - %s\n", $$1, $$2}'
@@ -26,12 +25,15 @@ help:
 clean:
 	@rm -rf node_modules/ dist/
 
-#install: @ Install NodeJS dependencies
-install:
+#deps: @ Install NodeJS dependencies
+deps:
 	pnpm install
 
+#install: @ Alias for deps
+install: deps
+
 #build: @ Build
-build: install
+build: deps
 	pnpm rb
 
 #run: @ Run
@@ -95,3 +97,5 @@ tf-create-remote-storage-account:
 #aztf-export: @ Export Azure Resource Group
 aztf-export:
 	@cd terra && aztfexport resource-group --non-interactive --hcl-only akaf12
+
+.PHONY: help clean deps install build run upgrade release version create-resources create-function publish-function delete-resources tf-create-remote-storage-account aztf-export
